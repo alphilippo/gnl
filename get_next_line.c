@@ -6,7 +6,7 @@
 /*   By: pmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 15:57:45 by pmartine          #+#    #+#             */
-/*   Updated: 2016/01/28 19:19:51 by pmartine         ###   ########.fr       */
+/*   Updated: 2016/01/28 19:25:49 by pmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static	char	*ft_strjoin_free(char *s1, char *s2)
 {
-	char	*tmp;
+	char	*join;
 
-	tmp = s1;
-	if (!(s1 = ft_strjoin(tmp, s2)))
+	if (!(join = ft_strjoin(s1, s2)))
 		return (NULL);
-	free(tmp);
-	return (s1);
+	free(s1);
+	s1 = NULL;
+	return (join);
 }
 
 static	int		ft_stockfile(int const fd, char *tmp[fd])
@@ -70,7 +70,7 @@ int				get_next_line(int const fd, char **line)
 {
 	static	char	*tmp[256];
 
-	if (fd < 0 || !line || BUFF_SIZE < 0 || fd > 256)
+	if (fd < 0 || fd == 1 || fd == 2 || !line || BUFF_SIZE < 0 || fd > 256)
 		return (-1);
 	if (!tmp[fd] && (!(tmp[fd] = ft_strnew(2))))
 		return (-1);
