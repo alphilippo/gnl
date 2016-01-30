@@ -6,7 +6,7 @@
 /*   By: pmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 15:57:45 by pmartine          #+#    #+#             */
-/*   Updated: 2016/01/30 17:52:08 by pmartine         ###   ########.fr       */
+/*   Updated: 2016/01/30 18:50:48 by pmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ static	int		ft_end_of_line(char *s)
 static	int		ft_line(int const fd, char *tmp[fd], char **line)
 {
 	int		eol;
-	char	*tt;
+	char	*temp;
 
 	eol = ft_end_of_line(tmp[fd]);
 	*line = ft_strsub(tmp[fd], 0, eol);
-	if (!(tt = (char *)malloc(sizeof(tt) * (ft_strlen(tmp[fd]) + 1))))
+	if (!(temp = (char *)malloc(sizeof(temp) * (ft_strlen(tmp[fd]) + 1))))
 		return (-1);
-	ft_strcpy(tt, &tmp[fd][eol + 1]);
+	ft_strcpy(temp, &tmp[fd][eol + 1]);
 	ft_strclr(tmp[fd]);
-	tmp[fd] = ft_strcpy(tmp[fd], tt);
-	free(tt);
+	tmp[fd] = ft_strcpy(tmp[fd], temp);
+	free(temp);
 	return (1);
 }
 
